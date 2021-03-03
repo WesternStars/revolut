@@ -1,7 +1,5 @@
 package service;
 
-import exception.MaxSeoLengthException;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -20,7 +18,7 @@ public class ShortUrlGeneratorService {
 
     public String generateSeoUrl(String address, String seo) throws URISyntaxException {
         if (validateLengthSeo(seo)) {
-            throw new MaxSeoLengthException("Length must be from 1 to " + MAX_LENGTH);
+            throw new IllegalArgumentException("Length seo parameter must be from 1 to " + MAX_LENGTH);
         }
 
         if (validateAddressStructure(address)) {

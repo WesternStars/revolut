@@ -1,6 +1,5 @@
 package service;
 
-import exception.MaxSeoLengthException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,9 +29,9 @@ class ShortUrlGeneratorServiceTest {
     }
 
     @Test
-    void generateSeoUrl_invalidSeoLength_MaxSeoLengthExceptionThrown() {
+    void generateSeoUrl_invalidSeoLength_IllegalArgumentExceptionThrown() {
         String seo = Stream.generate(() -> "1").limit(ShortUrlGeneratorService.MAX_LENGTH + 1).toString();
-        assertThrows(MaxSeoLengthException.class, () -> shortUrlGeneratorService.generateSeoUrl(TEST_URL, seo));
+        assertThrows(IllegalArgumentException.class, () -> shortUrlGeneratorService.generateSeoUrl(TEST_URL, seo));
     }
 
     @ParameterizedTest
